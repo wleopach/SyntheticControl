@@ -1,4 +1,4 @@
-# Con double exopnetial smoothing
+# Con double exponential smoothing
 # M36 VENTAS
 ![M36-sells-smooth.png](Images%2FM36-sells-smooth.png)
 # M36 SKUS

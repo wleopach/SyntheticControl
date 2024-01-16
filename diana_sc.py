@@ -14,7 +14,7 @@ df_dict = {key: df_gen(value) for key, value in ts_dict.items()}
 given_date = pd.to_datetime('2023-10-25')
 
 
-mode = 'sd'
+mode = 'ds'
 use_cols = {'M36': sel-{'M40'}, 'M40': sel-{'M36'}}
 for key in use_cols:
     for kind in df_dict.keys():
@@ -24,7 +24,7 @@ for key in use_cols:
             treatment_time = given_date
 
         else:
-            treatment_time = df.index.get_loc(given_date) - 1
+            treatment_time = df.index.get_loc(given_date) - 7
 
         df = df[list(use_cols[key])]
         # starting_date = min(df.index)

@@ -14,7 +14,7 @@ def df_gen(series_dict):
     return df
 
 
-def double_exp_smooth_damped(d, extra_periods=1, alpha=0.4, beta=0.4, phi=0.9):
+def double_exp_smooth_damped(d, extra_periods=7, alpha=0.4, beta=0.4, phi=0.9):
     cols = len(d)  # Historical period length
 
     d = np.append(d, [np.nan] * extra_periods)  # Append np.nan into the demand array to cover future periods
