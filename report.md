@@ -1,15 +1,12 @@
 # M36 VENTAS
-
-![img.png](img.png)
-
+![M36-sells.png](Images%2FM36-sells.png)
 # M36 SKUS
-![img_4.png](img_4.png)
-
+![M36-skus_count.png](Images%2FM36-skus_count.png)
 # M40 VENTAS
-![img_1.png](img_1.png)
+![M40-sells.png](Images%2FM40-sells.png)
 
 # M40 SKUS
-![img_2.png](img_2.png)
+![M40-skus_count.png](Images%2FM40-skus_count.png)
 
 
 
