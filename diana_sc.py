@@ -11,13 +11,29 @@ sel = {f"M{i}" for i in range(32, 43)}
 for key in ts_dict:
     ts_dict[key] = {seller: ts_dict[key][seller] for seller in sel}
 df_dict = {key: df_gen(value) for key, value in ts_dict.items()}
-treatment_time = pd.Timestamp('2023-10-25')
+given_date = pd.to_datetime('2023-10-25')
 
+
+mode = 'sd'
 use_cols = {'M36': sel-{'M40'}, 'M40': sel-{'M36'}}
 for key in use_cols:
     for kind in df_dict.keys():
         df = df_dict[kind]
+        if mode in {'sd', 'raw'}:
+
+            treatment_time = given_date
+
+        else:
+            treatment_time = df.index.get_loc(given_date) - 1
+
         df = df[list(use_cols[key])]
+        # starting_date = min(df.index)
+        #
+        # # Generate a PeriodIndex from the given starting date
+        # period_index = pd.period_range(start=starting_date, periods=len(df), freq='D')
+        # df.index = period_index
+        if mode != 'raw':
+            df = gen_tren_df(df, mode)
         result = cp.pymc_experiments.SyntheticControl(
             df,
             treatment_time,
@@ -28,7 +44,7 @@ for key in use_cols:
         )
 
         fig, ax = result.plot(plot_predictors=True)
-        plt.savefig(f'Images/{key}-{kind}.png')
+        plt.savefig(f'Images/{key}-{kind}-{mode}.png')
         print(f'{key}-{kind}')
         result.summary()
         print(az.summary(result.post_impact.mean("obs_ind")))
